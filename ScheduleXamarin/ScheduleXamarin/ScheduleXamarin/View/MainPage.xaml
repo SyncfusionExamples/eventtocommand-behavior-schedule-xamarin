@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ScheduleXamarin"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfSchedule.XForms;assembly=Syncfusion.SfSchedule.XForms"
+             x:Class="ScheduleXamarin.MainPage">
+    
+    <Grid>
+        <syncfusion:SfSchedule x:Name="schedule" ScheduleView="MonthView" DataSource="{Binding Meetings}" ShowAppointmentsInline="true" >
+            <syncfusion:SfSchedule.Behaviors>
+                <local:EventToCommandBehavior EventName="MonthInlineAppointmentTapped" Command="{Binding MonthInlineAppointmentTappedCommand}" />
+            </syncfusion:SfSchedule.Behaviors>
+            <syncfusion:SfSchedule.AppointmentMapping>
+                <syncfusion:ScheduleAppointmentMapping
+			SubjectMapping="EventName" 
+			ColorMapping="Color"
+			StartTimeMapping="From"
+			EndTimeMapping="To">
+                </syncfusion:ScheduleAppointmentMapping>
+            </syncfusion:SfSchedule.AppointmentMapping>
+        </syncfusion:SfSchedule>
+    </Grid>
+    <ContentPage.BindingContext>
+        <local:SchedulerViewModel/>
+    </ContentPage.BindingContext>
+</ContentPage>
